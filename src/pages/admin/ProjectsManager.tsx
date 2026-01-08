@@ -67,7 +67,7 @@ export default function ProjectsManager() {
               <p className="text-text-secondary text-lg mb-4">Add real-world case studies and projects for students</p>
               <div className="flex items-center gap-6 text-sm text-text-secondary">
                 <div className="flex items-center gap-2">
-                  <FolderKanban className="w-4 h-4 text-admin-accent" />
+                  <FolderKanban className="w-4 h-4 text-warm-brown" />
                   <span>{projects.length} Projects Available</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -108,7 +108,7 @@ export default function ProjectsManager() {
                   required
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-warm-brown focus:ring-2 focus:ring-warm-brown/20"
                   placeholder="e.g., Customer Churn Prediction"
                 />
               </div>
@@ -118,7 +118,7 @@ export default function ProjectsManager() {
                   required
                   value={formData.summary}
                   onChange={(e) => setFormData({ ...formData, summary: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-warm-brown focus:ring-2 focus:ring-warm-brown/20"
                   rows={4}
                   placeholder="Describe the project objectives and approach..."
                 />
@@ -129,7 +129,7 @@ export default function ProjectsManager() {
                   type="text"
                   value={formData.dataset_link}
                   onChange={(e) => setFormData({ ...formData, dataset_link: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-warm-brown focus:ring-2 focus:ring-warm-brown/20"
                   placeholder="https://kaggle.com/..."
                 />
               </div>
@@ -168,7 +168,7 @@ export default function ProjectsManager() {
             <Card>
               <div className="flex items-start justify-between mb-4">
                 <div className="w-14 h-14 bg-warm-brown/20 rounded-xl flex items-center justify-center">
-                  <FolderKanban className="w-7 h-7 text-admin-accent" />
+                  <FolderKanban className="w-7 h-7 text-warm-brown" />
                 </div>
                 <motion.button
                   whileHover={{ scale: 1.1 }}

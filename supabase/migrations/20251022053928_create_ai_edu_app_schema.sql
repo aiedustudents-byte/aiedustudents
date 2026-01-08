@@ -1,5 +1,5 @@
 /*
-  # AI EDU APP Database Schema
+  # AiToday APP Database Schema
 
   1. New Tables
     - `courses`

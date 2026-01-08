@@ -174,7 +174,7 @@ export default function PostNews() {
               <p className="text-text-secondary text-lg mb-4">Share latest AI and tech updates with students</p>
               <div className="flex items-center gap-6 text-sm text-text-secondary">
                 <div className="flex items-center gap-2">
-                  <Newspaper className="w-4 h-4 text-admin-accent" />
+                  <Newspaper className="w-4 h-4 text-warm-brown" />
                   <span>{news.length} Articles Published</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -215,7 +215,7 @@ export default function PostNews() {
                   required
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-warm-brown focus:ring-2 focus:ring-warm-brown/20"
                   placeholder="Article headline..."
                 />
               </div>
@@ -225,7 +225,7 @@ export default function PostNews() {
                   required
                   value={formData.content}
                   onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-warm-brown focus:ring-2 focus:ring-warm-brown/20"
                   rows={5}
                   placeholder="Article content..."
                 />
@@ -306,7 +306,7 @@ export default function PostNews() {
               <div className="flex items-start justify-between">
                 <div className="flex items-start gap-4 flex-1">
                   <div className="w-16 h-16 bg-warm-brown/20 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <Newspaper className="w-8 h-8 text-admin-accent" />
+                    <Newspaper className="w-8 h-8 text-warm-brown" />
                   </div>
                   <div className="flex-1">
                     <h3 className="text-xl font-semibold text-text-primary mb-2">{item.title}</h3>

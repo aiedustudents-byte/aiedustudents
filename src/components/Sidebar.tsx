@@ -1,6 +1,7 @@
-import { Home, BookOpen, Brain, Briefcase, Newspaper, MessageCircle, User, LayoutDashboard, Briefcase as BriefcaseIcon, Users, ArrowLeft, Settings, Zap, Code, Target, Sparkles } from 'lucide-react';
+import { Home, BookOpen, Brain, Newspaper, MessageCircle, User, LayoutDashboard, Users, ArrowLeft, ArrowRight, Zap, Code, Target, Sparkles, FileText } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useUser } from '../contexts/UserContext';
 
 interface SidebarProps {
   isAdmin?: boolean;
@@ -8,15 +9,15 @@ interface SidebarProps {
 
 const studentMenuItems = [
   { icon: Home, label: 'Home Dashboard', path: '/' },
+  { icon: FileText, label: 'Prompt Engineering Guide', path: '/prompt-engineering-guide' },
   { icon: Zap, label: 'Prompt Engineering', path: '/prompt-engineering' },
   { icon: Code, label: 'Vibe Coding', path: '/vibe-coding' },
   { icon: BookOpen, label: 'Courses Hub', path: '/courses' },
   { icon: Brain, label: 'AI Learning Tools', path: '/ai-tools' },
-  { icon: Briefcase, label: 'Career Booster', path: '/career' },
   { icon: Newspaper, label: 'AI Digest Feed', path: '/digest' },
   { icon: MessageCircle, label: 'Ask AI Mentor', path: '/mentor' },
-  { icon: Brain, label: '🧠 Emotional Wellness Corner', path: '/wellness' },
-  { icon: Sparkles, label: '🎨 AI Artist Corner', path: '/ai-artist-corner' },
+  { icon: Brain, label: 'Emotional Wellness Corner', path: '/wellness' },
+  { icon: Sparkles, label: 'AI Artist Corner', path: '/ai-artist-corner' },
   { icon: User, label: 'Profile & Progress', path: '/profile' },
 ];
 
@@ -24,140 +25,138 @@ const adminMenuItems = [
   { icon: LayoutDashboard, label: 'Dashboard Overview', path: '/admin' },
   { icon: BookOpen, label: 'Manage Courses', path: '/admin/courses' },
   { icon: Zap, label: 'Manage Prompt Engineering', path: '/admin/prompt-engineering' },
+  { icon: FileText, label: 'Guide - B.Com', path: '/admin/prompt-engineering-guide/B.Com' },
+  { icon: FileText, label: 'Guide - BBA', path: '/admin/prompt-engineering-guide/BBA' },
+  { icon: FileText, label: 'Guide - Civil', path: '/admin/prompt-engineering-guide/Civil Engineer' },
   { icon: Target, label: 'Simulator Tasks', path: '/admin/simulator-tasks' },
   { icon: Code, label: 'Manage Vibe Coding', path: '/admin/vibe-coding' },
   { icon: Newspaper, label: 'Post AI News', path: '/admin/news' },
-  { icon: BriefcaseIcon, label: 'Post Jobs/Internships', path: '/admin/jobs' },
   { icon: Brain, label: 'Manage AI Tools', path: '/admin/ai-tools' },
-  { icon: Brain, label: '🧠 Manage Wellness Corner', path: '/admin/wellness' },
-  { icon: Sparkles, label: '🎨 Manage Artist Corner', path: '/admin/ai-artist-corner' },
+  { icon: Brain, label: 'Manage Wellness Corner', path: '/admin/wellness' },
+  { icon: Sparkles, label: 'Manage Artist Corner', path: '/admin/ai-artist-corner' },
   { icon: Users, label: 'View Student Progress', path: '/admin/students' },
 ];
 
 export default function Sidebar({ isAdmin = false }: SidebarProps) {
   const location = useLocation();
+  const { user, isAdmin: userIsAdmin, collegeName } = useUser();
   const menuItems = isAdmin ? adminMenuItems : studentMenuItems;
-  
-  // Check if current user is admin
-  const isAdminUser = () => {
-    const userData = localStorage.getItem('userData');
-    if (userData) {
-      const user = JSON.parse(userData);
-      const isAdmin = user.role === 'admin' || user.email === 'admin@example.com' || user.email === 'aiedustudents@gmail.com';
-      console.log('Admin check:', { user, isAdmin, isAdminProp: isAdmin });
-      return isAdmin;
-    }
-    return false;
-  };
 
   return (
     <motion.div
       initial={{ x: -300 }}
       animate={{ x: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed left-0 top-0 h-screen w-72 bg-cream-bg border-r border-light-accent shadow-xl flex flex-col`}
+      className={`fixed left-0 top-0 h-screen w-72 border-r shadow-xl flex flex-col ${isAdmin
+        ? 'bg-cream-bg'
+        : 'bg-cream-bg border-light-accent'
+        }`}
+      style={isAdmin ? {
+        borderRight: '1px solid rgba(0,0,0,0.1)'
+      } : {}}
     >
-      {/* Top fixed: Logo + admin panel controls */}
-      <div className="p-6 pb-0 flex-none">
-        {/* Logo Section */}
+      {/* Top branding section */}
+      <div className="px-6 py-10 pb-6 flex-none">
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="flex items-center gap-3 mb-8"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="flex items-center justify-center"
         >
-          <div className="w-12 h-12 bg-warm-brown rounded-xl flex items-center justify-center border border-warm-brown/30">
-            <Brain className="w-7 h-7 text-white" />
-          </div>
-          <div>
-            <h1 className="text-2xl font-bold text-dark-primary">AI EDU</h1>
-            <p className="text-sm text-medium-gray font-semibold">{isAdmin ? 'Admin Panel' : 'For Graduates'}</p>
-          </div>
+          <span className="text-[38px] font-extrabold text-black leading-none tracking-tight">AI-</span>
+          <span className="text-[38px] font-black text-[#1e3a8a] leading-none tracking-tight flex items-center">
+            T
+            <div className="relative mx-1 w-8 h-8 flex items-center justify-center">
+              {/* Circuit-style O */}
+              <div className="absolute inset-0 rounded-full border-[2.5px] border-[#1e3a8a]"></div>
+              <div className="absolute w-4 h-[2.5px] bg-[#1e3a8a] left-0 top-1/2 -translate-y-1/2 -translate-x-[2px]"></div>
+              <div className="absolute w-[2.5px] h-4 bg-[#1e3a8a] left-1/2 -translate-x-1/2 top-0 -translate-y-[2px]"></div>
+              <div className="w-3 h-3 rounded-full border-[1.5px] border-[#1e3a8a] flex items-center justify-center">
+                <div className="w-1 h-1 rounded-full bg-[#1e3a8a] shadow-[0_0_6px_#1e3a8a]"></div>
+              </div>
+            </div>
+            DAY
+          </span>
         </motion.div>
-
-        {/* Back to Student Dashboard Button for Admin */}
-        {isAdmin && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+        {collegeName && (
+          <motion.p
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="mb-6"
+            className="text-[14px] font-bold text-[#1e3a8a] text-center mt-2 px-2 leading-tight uppercase tracking-wider"
           >
-            <Link to="/">
-              <motion.button
-                whileHover={{ scale: 1.02, x: 4 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full px-4 py-3 bg-warm-brown rounded-button text-white font-medium flex items-center gap-2 shadow-card hover:shadow-hover transition-all duration-300"
-              >
-                <ArrowLeft className="w-5 h-5" />
-                Back to Students Dashboard
-              </motion.button>
-            </Link>
-          </motion.div>
-        )}
-
-        {/* Admin Panel Button for Admin User in Student View */}
-        {!isAdmin && isAdminUser() && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mb-6"
-          >
-            <Link to="/admin">
-              <motion.button
-                whileHover={{ scale: 1.02, x: 4 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full px-4 py-3 bg-warm-brown rounded-button text-white font-medium flex items-center gap-2 shadow-card hover:shadow-hover transition-all duration-300"
-              >
-                <Settings className="w-5 h-5" />
-                Admin Panel
-              </motion.button>
-            </Link>
-          </motion.div>
+            {collegeName}
+          </motion.p>
         )}
       </div>
-      {/* Scrollable navigation menu BELOW (flex-1, overflow-y-auto) */}
-      <nav className="space-y-1 mt-6 flex-1 overflow-y-auto custom-scrollbar px-6 pb-8">
-        {menuItems.map((item, index) => {
-          const Icon = item.icon;
-          const isActive = location.pathname === item.path;
 
-          return (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.1 * index + 0.4 }}
+      <div className="px-6 pb-0 flex-none">
+        {isAdmin ? (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-4"
+          >
+            <Link
+              to="/"
+              className="flex items-center justify-center gap-2 w-full py-3 bg-white border border-light-accent text-text-primary rounded-xl hover:bg-gray-50 transition-colors shadow-sm"
             >
-              <Link to={item.path}>
-                <motion.div
-                  whileHover={{ scale: 1.02, x: 4 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-button transition-all duration-300 ${
-                    isActive
-                      ? 'bg-warm-brown/20 border border-warm-brown/40'
-                      : 'hover:bg-light-accent/20 border border-transparent'
-                  }`}
-                >
-                  <Icon
-                    className={`w-5 h-5 transition-colors duration-300 ${
-                      isActive ? 'text-warm-brown' : 'text-medium-gray'
-                    }`}
-                  />
-                  <span
-                    className={`text-sm font-medium transition-colors duration-300 ${
-                      isActive ? 'text-dark-primary' : 'text-medium-gray'
-                    }`}
-                  >
-                    {item.label}
-                  </span>
-                </motion.div>
+              <ArrowLeft className="w-4 h-4" />
+              <span className="font-medium">Student View</span>
+            </Link>
+          </motion.div>
+        ) : (
+          userIsAdmin && user?.email === 'aiedustudents@gmail.com' && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-4"
+            >
+              <Link
+                to="/admin"
+                className="flex items-center justify-center gap-2 w-full py-3 bg-admin-accent text-white rounded-xl hover:bg-admin-accent/90 transition-all shadow-md"
+              >
+                <ArrowRight className="w-4 h-4" />
+                <span className="font-medium">Admin Panel</span>
               </Link>
             </motion.div>
-          );
-        })}
+          )
+        )}
+      </div>
+
+      {/* Menu Items */}
+      <nav className="flex-1 px-4 overflow-y-auto mt-4 custom-scrollbar">
+        <ul className="space-y-1.5 pb-8">
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = location.pathname === item.path;
+            const isGuide = item.label.startsWith('Guide -');
+
+            return (
+              <li key={item.path}>
+                <Link
+                  to={item.path}
+                  className={`flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all group relative ${isActive
+                    ? 'bg-admin-accent text-white shadow-lg shadow-admin-accent/20'
+                    : 'text-text-secondary hover:bg-white hover:text-admin-accent hover:shadow-md'
+                    }`}
+                >
+                  <Icon className={`w-5 h-5 transition-transform group-hover:scale-110 ${isActive ? 'text-white' : 'text-admin-accent'}`} />
+                  <span className={`font-medium text-sm ${isGuide ? 'text-xs italic' : ''}`}>{item.label}</span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="sidebar-active"
+                      className="absolute left-0 w-1 h-6 bg-white rounded-r-full"
+                    />
+                  )}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
       </nav>
+
+
     </motion.div>
   );
 }

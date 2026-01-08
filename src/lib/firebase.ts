@@ -22,17 +22,27 @@ const requiredFields = ['projectId', 'apiKey', 'authDomain', 'appId'];
 const missingFields = requiredFields.filter(field => !firebaseConfig[field as keyof typeof firebaseConfig]);
 
 if (missingFields.length > 0) {
-  console.error('Firebase configuration error: Missing required environment variables:');
+  console.error('⚠️ Firebase configuration error: Missing required environment variables:');
   missingFields.forEach(field => {
     console.error(`  - VITE_FIREBASE_${field.toUpperCase().replace(/([A-Z])/g, '_$1')}`);
   });
-  console.error('Please set all Firebase environment variables in Netlify dashboard:');
-  console.error('Site Settings → Environment Variables → Add variable');
+  console.error('Please set all Firebase environment variables in your .env file or deployment platform.');
   console.error('Required variables: VITE_FIREBASE_API_KEY, VITE_FIREBASE_AUTH_DOMAIN, VITE_FIREBASE_PROJECT_ID, VITE_FIREBASE_STORAGE_BUCKET, VITE_FIREBASE_MESSAGING_SENDER_ID, VITE_FIREBASE_APP_ID, VITE_FIREBASE_MEASUREMENT_ID');
 }
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+let app;
+try {
+  app = initializeApp(firebaseConfig);
+  if (missingFields.length === 0) {
+    console.log('✅ Firebase initialized successfully');
+  } else {
+    console.warn('⚠️ Firebase initialized with incomplete configuration. Some features may not work.');
+  }
+} catch (error) {
+  console.error('❌ Firebase initialization failed:', error);
+  throw error;
+}
 
 // Initialize Analytics only if config is valid
 let analytics;
@@ -53,5 +63,18 @@ const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({
   prompt: 'select_account'
 });
+
+// Log auth configuration for debugging
+if (typeof window !== 'undefined') {
+  console.log('Firebase Auth Configuration:', {
+    appName: auth.app.name,
+    currentUser: auth.currentUser?.email || 'No user signed in',
+    config: {
+      projectId: firebaseConfig.projectId,
+      authDomain: firebaseConfig.authDomain,
+      hasApiKey: !!firebaseConfig.apiKey
+    }
+  });
+}
 
 export { db, auth, analytics, googleProvider, storage };

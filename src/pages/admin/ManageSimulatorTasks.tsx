@@ -150,7 +150,7 @@ export default function ManageSimulatorTasks() {
               <p className="text-text-secondary text-lg mb-4">Create and manage tasks for the Prompt Engineering Simulator</p>
               <div className="flex items-center gap-6 text-sm text-text-secondary">
                 <div className="flex items-center gap-2">
-                  <Target className="w-4 h-4 text-admin-accent" />
+                  <Target className="w-4 h-4 text-warm-brown" />
                   <span>Task Management</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -196,7 +196,7 @@ export default function ManageSimulatorTasks() {
                   required
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-warm-brown focus:ring-2 focus:ring-warm-brown/20"
                   placeholder="e.g., Write a professional email to request a meeting"
                 />
                 <p className="text-xs text-text-secondary mt-1">This will be displayed as the task in the simulator</p>
@@ -206,7 +206,7 @@ export default function ManageSimulatorTasks() {
                 <textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-warm-brown focus:ring-2 focus:ring-warm-brown/20"
                   rows={3}
                   placeholder="Optional: Additional context or instructions for students"
                 />
@@ -217,7 +217,7 @@ export default function ManageSimulatorTasks() {
                   type="text"
                   value={formData.emoji}
                   onChange={(e) => setFormData({ ...formData, emoji: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-warm-brown focus:ring-2 focus:ring-warm-brown/20"
                   placeholder="📧"
                   maxLength={2}
                 />

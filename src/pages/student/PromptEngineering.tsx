@@ -191,7 +191,7 @@ export default function PromptEngineering() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => navigate('/prompt-simulator')}
-                className="bg-[#780606] hover:bg-[#a91a1a] text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl border border-red-800/50"
+                className="bg-warm-brown hover:bg-[#0a196c] text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl border border-warm-brown/50"
               >
                 <Gamepad2 className="w-5 h-5" />
                 👉 Prompt Engineering Simulator

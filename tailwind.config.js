@@ -4,38 +4,42 @@ export default {
   theme: {
     extend: {
       colors: {
-        // New Color Palette
+        // Theme Blue Colors
+        'theme-blue-1': '#0c1e7f',
+        'theme-blue-2': '#060c3a',
+        
+        // New Color Palette - Light Theme for Student Pages
         'dark-primary': '#252323',      // Dark text/headers
         'medium-gray': '#000000',       // Secondary text
-        'cream-bg': '#f5f1ed',          // Main background
+        'cream-bg': '#f5f1ed',          // Main background (light cream)
         'light-accent': '#dad2bc',      // Light accent/borders
-        'warm-brown': '#780606',        // Primary accent/buttons
+        'warm-brown': '#0c1e7f',        // Primary blue accent/buttons (replacing red)
         
         // Legacy colors (keeping for compatibility)
-        'primary-bg': '#f5f1ed',
-        'primary-accent': '#780606',
-        'secondary-accent': '#dad2bc',
-        'card-bg': '#f5f1ed',
-        'text-primary': '#252323',
-        'text-secondary': '#000000',
+        'primary-bg': '#f5f1ed',        // Light cream background
+        'primary-accent': '#0c1e7f',    // Blue accent
+        'secondary-accent': '#dad2bc',  // Light accent
+        'card-bg': '#ffffff',           // White cards
+        'text-primary': '#252323',      // Dark text
+        'text-secondary': '#000000',    // Dark secondary text
         'success': '#10B981',
         'warning': '#F59E0B',
         'error': '#EF4444',
         
-        // Sidebar Colors
-        'sidebar-bg-start': '#252323',
-        'sidebar-bg-end': '#70798c',
-        'sidebar-active': '#780606',
+        // Sidebar Colors (for student pages - light theme)
+        'sidebar-bg-start': '#f5f1ed',
+        'sidebar-bg-end': '#f5f1ed',
+        'sidebar-active': '#0c1e7f',
         
         // Button Colors
-        'btn-primary-start': '#780606',
-        'btn-primary-end': '#dad2bc',
-        'btn-secondary': '#dad2bc',
+        'btn-primary-start': '#0c1e7f',
+        'btn-primary-end': '#060c3a',
+        'btn-secondary': '#ffffff',      // White secondary buttons
         
         // Admin Theme Colors
-        'admin-bg': '#f5f1ed',
-        'admin-sidebar': '#252323',
-        'admin-accent': '#780606',
+        'admin-bg': 'transparent',        // Transparent to show radial gradient
+        'admin-sidebar': '#0c1e7f',
+        'admin-accent': '#0c1e7f',
       },
       fontFamily: {
         'sans': ['Times New Roman', 'serif'],

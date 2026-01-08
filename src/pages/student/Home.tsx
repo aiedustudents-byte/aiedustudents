@@ -34,7 +34,7 @@ export default function Home() {
     certificates: 0,
     progress: 0
   });
-  const { userName } = useUser();
+  const { userName, userDomain } = useUser();
 
   // Function to convert URLs to clickable links
   function convertUrlsToLinks(text: string) {
@@ -102,7 +102,7 @@ export default function Home() {
       // Calculate statistics
       const completedCourses = progressData.filter((progress: any) => progress.completed).length;
       const progressPercentage = totalCourses > 0 ? Math.round((completedCourses / totalCourses) * 100) : 0;
-      
+
       // Estimate hours studied (assuming 2-3 hours per completed course)
       const hoursStudied = completedCourses * 2.5;
 
@@ -129,7 +129,7 @@ export default function Home() {
           <div className="flex items-center justify-between">
             <div className="flex-1">
               <h1 className="text-4xl font-bold text-warm-brown mb-3">
-                {greeting}, Future AI Expert!
+                {greeting}, {userName}{userDomain ? ` (${userDomain})` : ''}!
               </h1>
               <p className="text-medium-gray text-lg mb-4">Ready to level up your AI skills today?</p>
             </div>
@@ -171,8 +171,9 @@ export default function Home() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
+          className="h-full"
         >
-          <Card>
+          <Card className="h-full">
             <div className="flex items-start gap-3 mb-4">
               <div className="w-10 h-10 bg-warm-brown/10 rounded-lg flex items-center justify-center">
                 <Sparkles className="w-5 h-5 text-warm-brown" />
@@ -190,8 +191,9 @@ export default function Home() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3 }}
+          className="h-full"
         >
-          <Card>
+          <Card className="h-full">
             <div className="flex items-start gap-3 mb-4">
               <div className="w-10 h-10 bg-success/10 rounded-lg flex items-center justify-center">
                 <Zap className="w-5 h-5 text-success" />

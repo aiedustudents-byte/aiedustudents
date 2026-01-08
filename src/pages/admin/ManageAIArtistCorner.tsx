@@ -398,8 +398,8 @@ export default function ManageAIArtistCorner() {
       icon: BarChart3, 
       label: 'Total Posts', 
       value: stats.totalPosts, 
-      color: 'text-admin-accent', 
-      bg: 'bg-admin-accent/10' 
+      color: 'text-warm-brown', 
+      bg: 'bg-warm-brown/10' 
     },
     { 
       icon: Flag, 
@@ -455,7 +455,7 @@ export default function ManageAIArtistCorner() {
               <p className="text-text-secondary text-lg mb-4">Moderate community posts and manage the creativity hub</p>
               <div className="flex items-center gap-6 text-sm text-text-secondary">
                 <div className="flex items-center gap-2">
-                  <Eye className="w-4 h-4 text-admin-accent" />
+                  <Eye className="w-4 h-4 text-warm-brown" />
                   <span>Content Moderation</span>
                 </div>
                 <div className="flex items-center gap-2">

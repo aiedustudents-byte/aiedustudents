@@ -94,7 +94,7 @@ export default function ManageVibeCoding() {
               <p className="text-text-secondary text-lg mb-4">Create and manage Vibe Coding content and videos</p>
               <div className="flex items-center gap-6 text-sm text-text-secondary">
                 <div className="flex items-center gap-2">
-                  <Code className="w-4 h-4 text-admin-accent" />
+                  <Code className="w-4 h-4 text-warm-brown" />
                   <span>Content Management</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -192,7 +192,7 @@ export default function ManageVibeCoding() {
                   required
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-warm-brown focus:ring-2 focus:ring-warm-brown/20"
                   placeholder="e.g., Vibe Coding"
                 />
               </div>
@@ -202,7 +202,7 @@ export default function ManageVibeCoding() {
                   required
                   value={formData.introduction}
                   onChange={(e) => setFormData({ ...formData, introduction: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-warm-brown focus:ring-2 focus:ring-warm-brown/20"
                   rows={12}
                   placeholder="Enter your introduction content here. You can use HTML tags for formatting:
 
@@ -230,7 +230,7 @@ export default function ManageVibeCoding() {
                   type="url"
                   value={formData.video_url}
                   onChange={(e) => setFormData({ ...formData, video_url: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20"
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-warm-brown focus:ring-2 focus:ring-warm-brown/20"
                   placeholder="https://www.youtube.com/watch?v=..."
                 />
                 <p className="text-xs text-text-secondary mt-1">

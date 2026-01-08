@@ -1,4 +1,4 @@
-# AI EDU Graduates Platform
+# AiToday Graduates Platform
 
 AI-powered education platform with community features, gamification, and AI tools.
 

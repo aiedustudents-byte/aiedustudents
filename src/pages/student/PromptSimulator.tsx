@@ -218,14 +218,14 @@ export default function PromptSimulator() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-gray-50 text-gray-900"
+      className="min-h-screen bg-primary-bg text-text-primary"
     >
       {/* Subtle Animation on Load */}
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="absolute inset-0 bg-[#780606]/5 blur-3xl"
+        className="absolute inset-0 bg-warm-brown/5 blur-3xl"
       />
 
       <div className="relative z-10 p-8 space-y-6">
@@ -235,7 +235,7 @@ export default function PromptSimulator() {
           animate={{ x: 0, opacity: 1 }}
           whileHover={{ x: -5 }}
           onClick={() => navigate('/prompt-engineering')}
-          className="flex items-center gap-2 text-gray-700 hover:text-[#780606] transition-colors"
+          className="flex items-center gap-2 text-text-primary hover:text-warm-brown transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
           <span className="font-medium">Back to Prompt Engineering</span>
@@ -245,16 +245,16 @@ export default function PromptSimulator() {
         <motion.div
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="bg-white backdrop-blur-md border border-gray-200 rounded-2xl p-6 shadow-lg"
+          className="bg-card-bg backdrop-blur-md border border-light-accent rounded-2xl p-6 shadow-lg"
         >
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-[#780606] rounded-xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 bg-warm-brown rounded-xl flex items-center justify-center shadow-lg">
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-gray-900">Prompt Engineering Simulator</h1>
-                <p className="text-gray-900">Master AI communication skills through hands-on practice</p>
+                <h1 className="text-3xl font-bold text-text-primary">Prompt Engineering Simulator</h1>
+                <p className="text-text-secondary">Master AI communication skills through hands-on practice</p>
               </div>
             </div>
             
@@ -262,7 +262,7 @@ export default function PromptSimulator() {
               <select
                 value={selectedModel}
                 onChange={(e) => setSelectedModel(e.target.value)}
-                className="bg-white border border-gray-300 text-gray-900 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#780606]"
+                className="bg-card-bg border border-light-accent text-text-primary rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-warm-brown"
               >
                 {models.map((model) => (
                   <option key={model.id} value={model.id}>
@@ -272,11 +272,11 @@ export default function PromptSimulator() {
               </select>
 
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(120, 6, 6, 0.3)' }}
+                whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(12, 30, 127, 0.3)' }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleRunPrompt}
                 disabled={isRunning}
-                className="bg-[#780606] hover:bg-[#a91a1a] text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 shadow-lg"
+                className="bg-warm-brown hover:bg-[#0a196c] text-white px-6 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all duration-300 shadow-lg"
               >
                 <Play className="w-5 h-5" />
                 {isRunning ? 'Running...' : 'Run Prompt'}
@@ -294,36 +294,36 @@ export default function PromptSimulator() {
             transition={{ delay: 0.2 }}
             className="lg:col-span-1 space-y-6"
           >
-            <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
+            <div className="bg-card-bg border border-light-accent rounded-2xl p-6 shadow-lg">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-[#780606] rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-warm-brown rounded-lg flex items-center justify-center">
                   <Target className="w-5 h-5 text-white" />
                 </div>
-                <h2 className="text-xl font-bold text-gray-900">Task</h2>
+                <h2 className="text-xl font-bold text-text-primary">Task</h2>
               </div>
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 min-h-[150px]">
+              <div className="bg-light-accent/20 border border-light-accent rounded-lg p-4 min-h-[150px]">
                 {selectedTaskObj?.image_data ? (
                   <div className="space-y-3">
                     <img 
                       src={selectedTaskObj.image_data} 
                       alt="Task" 
-                      className="w-full h-48 object-contain rounded-lg bg-white border border-gray-200"
+                      className="w-full h-48 object-contain rounded-lg bg-card-bg border border-light-accent"
                     />
-                    <p className="text-gray-700 leading-relaxed">
+                    <p className="text-text-primary leading-relaxed">
                       <span className="font-semibold">Task:</span> {task}
                     </p>
-                    <p className="text-sm text-gray-600 italic">
+                    <p className="text-sm text-text-secondary italic">
                       💡 Write a detailed prompt to describe this image and analyze its contents
                     </p>
                   </div>
                 ) : (
-                  <p className="text-gray-700 leading-relaxed">{task}</p>
+                  <p className="text-text-primary leading-relaxed">{task}</p>
                 )}
               </div>
               
               {/* Sample Tasks */}
               <div className="mt-4 space-y-2">
-                <p className="text-sm font-semibold text-gray-700 mb-2">Available Tasks:</p>
+                <p className="text-sm font-semibold text-text-primary mb-2">Available Tasks:</p>
                 {availableTasks.length > 0 ? (
                   availableTasks.map((taskItem) => (
                     <button
@@ -332,13 +332,13 @@ export default function PromptSimulator() {
                         setTask(taskItem.title);
                         setSelectedTaskObj(taskItem);
                       }}
-                      className="text-sm text-gray-700 hover:text-[#780606] bg-gray-50 hover:bg-gray-100 rounded-lg p-2 w-full text-left transition-colors border border-gray-200"
+                      className="text-sm text-text-primary hover:text-warm-brown bg-light-accent/20 hover:bg-light-accent/30 rounded-lg p-2 w-full text-left transition-colors border border-light-accent"
                     >
                       {taskItem.emoji} {taskItem.title}
                     </button>
                   ))
                 ) : (
-                  <p className="text-sm text-gray-500 italic">No tasks available. Admin will add tasks soon.</p>
+                  <p className="text-sm text-text-secondary italic">No tasks available. Admin will add tasks soon.</p>
                 )}
               </div>
             </div>
@@ -349,21 +349,21 @@ export default function PromptSimulator() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="lg:col-span-1 bg-white border border-gray-200 rounded-2xl p-6 shadow-lg"
+            className="lg:col-span-1 bg-card-bg border border-light-accent rounded-2xl p-6 shadow-lg"
           >
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-[#780606] rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-warm-brown rounded-lg flex items-center justify-center">
                 <Zap className="w-5 h-5 text-white" />
               </div>
-              <h2 className="text-xl font-bold text-gray-900">Your Prompt</h2>
+              <h2 className="text-xl font-bold text-text-primary">Your Prompt</h2>
             </div>
             <textarea
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               placeholder="Write your prompt here..."
-              className="w-full h-[300px] bg-gray-50 border border-gray-300 text-gray-900 rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-[#780606] resize-none custom-scrollbar"
+              className="w-full h-[300px] bg-light-accent/20 border border-light-accent text-text-primary rounded-lg p-4 focus:outline-none focus:ring-2 focus:ring-warm-brown resize-none custom-scrollbar"
             />
-            <p className="text-xs text-gray-900 mt-2">Enter your prompt and click "Run Prompt" to see the results</p>
+            <p className="text-xs text-text-secondary mt-2">Enter your prompt and click "Run Prompt" to see the results</p>
           </motion.div>
 
           {/* Right Panel - Output & Feedback */}
@@ -374,23 +374,23 @@ export default function PromptSimulator() {
             className="lg:col-span-1 space-y-6"
           >
             {/* Model Output */}
-            <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg">
+            <div className="bg-card-bg border border-light-accent rounded-2xl p-6 shadow-lg">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-[#780606] rounded-lg flex items-center justify-center">
+                <div className="w-10 h-10 bg-warm-brown rounded-lg flex items-center justify-center">
                   <Sparkles className="w-5 h-5 text-white" />
                 </div>
-                <h2 className="text-xl font-bold text-gray-900">Model Output</h2>
+                <h2 className="text-xl font-bold text-text-primary">Model Output</h2>
               </div>
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 min-h-[150px] max-h-[150px] overflow-y-auto custom-scrollbar">
+              <div className="bg-light-accent/20 border border-light-accent rounded-lg p-4 min-h-[150px] max-h-[150px] overflow-y-auto custom-scrollbar">
                 {isRunning && !modelOutput ? (
-                  <div className="flex items-center gap-2 text-gray-700">
-                    <div className="animate-spin w-4 h-4 border-2 border-[#780606] border-t-transparent rounded-full"></div>
+                  <div className="flex items-center gap-2 text-text-primary">
+                    <div className="animate-spin w-4 h-4 border-2 border-warm-brown border-t-transparent rounded-full"></div>
                     <span>Generating response...</span>
                   </div>
                 ) : modelOutput ? (
-                  <p className="text-gray-700 leading-relaxed">{modelOutput}</p>
+                  <p className="text-text-primary leading-relaxed">{modelOutput}</p>
                 ) : (
-                  <p className="text-gray-400 italic">Output will appear here...</p>
+                  <p className="text-text-secondary italic">Output will appear here...</p>
                 )}
               </div>
             </div>
@@ -400,27 +400,27 @@ export default function PromptSimulator() {
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg"
+                className="bg-card-bg border border-light-accent rounded-2xl p-6 shadow-lg"
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-[#780606] rounded-lg flex items-center justify-center">
+                  <div className="w-10 h-10 bg-warm-brown rounded-lg flex items-center justify-center">
                     <TrendingUp className="w-5 h-5 text-white" />
                   </div>
-                  <h2 className="text-xl font-bold text-gray-900">Feedback Scores</h2>
+                  <h2 className="text-xl font-bold text-text-primary">Feedback Scores</h2>
                 </div>
                 <div className="space-y-3">
                   {Object.entries(feedback).map(([key, score]) => (
                     <div key={key} className="space-y-1">
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-700 capitalize">{key}</span>
-                        <span className="text-gray-900 font-semibold">{score}/100</span>
+                        <span className="text-text-primary capitalize">{key}</span>
+                        <span className="text-text-primary font-semibold">{score}/100</span>
                       </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div className="w-full bg-light-accent rounded-full h-2">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${score}%` }}
                           transition={{ duration: 0.8 }}
-                          className="bg-[#780606] h-2 rounded-full"
+                          className="bg-warm-brown h-2 rounded-full"
                         />
                       </div>
                     </div>
@@ -434,13 +434,13 @@ export default function PromptSimulator() {
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                className="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg"
+                className="bg-card-bg border border-light-accent rounded-2xl p-6 shadow-lg"
               >
-                <h3 className="text-lg font-bold text-gray-900 mb-3">💡 Suggested Improvements</h3>
+                <h3 className="text-lg font-bold text-text-primary mb-3">💡 Suggested Improvements</h3>
                 <ul className="space-y-2">
                   {suggestions.map((suggestion, index) => (
-                    <li key={index} className="text-gray-700 text-sm flex items-start gap-2">
-                      <span className="text-[#780606]">→</span>
+                    <li key={index} className="text-text-primary text-sm flex items-start gap-2">
+                      <span className="text-warm-brown">→</span>
                       <span>{suggestion}</span>
                     </li>
                   ))}
@@ -455,16 +455,16 @@ export default function PromptSimulator() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="bg-white border border-gray-200 rounded-2xl p-6 shadow-lg"
+          className="bg-card-bg border border-light-accent rounded-2xl p-6 shadow-lg"
         >
           <div className="flex items-center justify-between flex-wrap gap-4">
             <div className="flex items-center gap-8">
               <div>
-                <p className="text-gray-600 text-sm">Token Usage</p>
-                <p className="text-2xl font-bold text-gray-900">{tokenUsage} tokens</p>
+                <p className="text-text-secondary text-sm">Token Usage</p>
+                <p className="text-2xl font-bold text-text-primary">{tokenUsage} tokens</p>
               </div>
               <div>
-                <p className="text-gray-600 text-sm">XP Points</p>
+                <p className="text-text-secondary text-sm">XP Points</p>
                 <div className="flex items-center gap-2">
                   <AnimatePresence>
                     {isAnimatingXP && (
@@ -472,7 +472,7 @@ export default function PromptSimulator() {
                         initial={{ scale: 0, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0, opacity: 0 }}
-                        className="text-[#780606] font-bold"
+                        className="text-warm-brown font-bold"
                       >
                         +XP!
                       </motion.span>
@@ -482,7 +482,7 @@ export default function PromptSimulator() {
                     key={xpPoints}
                     initial={{ scale: 1.2 }}
                     animate={{ scale: 1 }}
-                    className="text-2xl font-bold text-gray-900"
+                    className="text-2xl font-bold text-text-primary"
                   >
                     {xpPoints}
                   </motion.p>
@@ -500,7 +500,7 @@ export default function PromptSimulator() {
                 setSuggestions([]);
                 setTokenUsage(0);
               }}
-              className="bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300"
+              className="bg-warm-brown hover:bg-[#0a196c] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300"
             >
               Try Again
             </motion.button>

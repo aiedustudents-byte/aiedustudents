@@ -9,17 +9,17 @@ interface CardProps {
   variant?: 'default' | 'premium' | 'glass';
 }
 
-export default function Card({ 
-  children, 
-  className = '', 
-  hover = true, 
+export default function Card({
+  children,
+  className = '',
+  hover = true,
   gradient = false,
   variant = 'default'
 }: CardProps) {
   const getCardStyles = () => {
     switch (variant) {
       case 'premium':
-        return 'bg-cream-bg border border-light-accent/50 shadow-card hover:shadow-hover';
+        return 'bg-card-bg border border-light-accent/50 shadow-card hover:shadow-hover';
       case 'glass':
         return 'glass-effect shadow-card hover:shadow-hover';
       default:
@@ -31,21 +31,20 @@ export default function Card({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={hover ? { 
-        scale: 1.02, 
+      whileHover={hover ? {
+        scale: 1.02,
         y: -4,
         transition: { duration: 0.2 }
       } : {}}
       className={`relative ${className}`}
     >
       <div
-        className={`relative rounded-card p-6 transition-all duration-300 ${getCardStyles()} ${
-          hover ? 'hover-lift' : ''
-        }`}
+        className={`relative h-full flex flex-col rounded-card p-6 transition-all duration-300 ${getCardStyles()} ${hover ? 'hover-lift' : ''
+          }`}
       >
         {children}
         {gradient && (
-          <div className="absolute inset-0 rounded-card bg-warm-brown/5 pointer-events-none" />
+          <div className="absolute inset-0 rounded-card bg-theme-blue-1/5 pointer-events-none" />
         )}
       </div>
     </motion.div>

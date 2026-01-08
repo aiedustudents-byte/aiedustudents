@@ -11,7 +11,7 @@ interface NavbarProps {
 
 export default function Navbar({ isAdmin = false }: NavbarProps) {
   const navigate = useNavigate();
-  const { userName, user, loading } = useUser();
+  const { userName, userDomain, loading } = useUser();
 
   const handleLogout = async () => {
     try {
@@ -29,89 +29,63 @@ export default function Navbar({ isAdmin = false }: NavbarProps) {
   // Show loading state while auth is initializing
   if (loading) {
     return (
-      <div className={`fixed top-0 right-0 left-72 h-16 z-50 ${
-        isAdmin 
-          ? 'bg-cream-bg border-b border-light-accent' 
-          : 'bg-card-bg border-b border-light-accent'
-      } flex items-center justify-end px-6`}>
+      <div className={`fixed top-0 right-0 left-72 h-16 z-50 ${isAdmin
+        ? 'bg-cream-bg border-b border-light-accent'
+        : 'bg-card-bg border-b border-light-accent'
+        } flex items-center justify-end px-6`}>
         <div className="animate-pulse bg-light-accent h-8 w-32 rounded"></div>
       </div>
     );
   }
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`fixed top-0 right-0 left-72 h-16 z-50 ${
-        isAdmin 
-          ? 'bg-cream-bg border-b border-light-accent' 
-          : 'bg-cream-bg border-b border-light-accent'
-      } shadow-soft`}
+      className={`fixed top-0 right-0 left-72 h-16 z-50 border-b shadow-soft ${isAdmin
+        ? 'bg-cream-bg border-light-accent'
+        : 'bg-cream-bg border-light-accent'
+        }`}
     >
       <div className="h-full px-8 flex items-center justify-between">
         {/* Left Section - Welcome Message */}
         <div>
-          <h2 className={`text-xl font-semibold ${
-            isAdmin ? 'text-dark-primary' : 'text-dark-primary'
-          }`}>
-            {isAdmin ? 'Admin Panel' : `Welcome back, ${userName}`}
+          <h2 className={`text-xl font-semibold ${isAdmin ? 'text-warm-brown' : 'text-dark-primary'
+            }`}>
+            {isAdmin ? 'Admin Dashboard' : `Welcome back, ${userName}${userDomain ? ` (${userDomain})` : ''}`}
           </h2>
-          <p className={`text-sm ${
-            isAdmin ? 'text-medium-gray' : 'text-medium-gray'
-          }`}>
+          <p className={`text-sm ${isAdmin ? 'text-medium-gray' : 'text-medium-gray'
+            }`}>
             {isAdmin ? 'Manage your education platform' : 'Ready to learn something new today?'}
           </p>
         </div>
 
-        {/* Right Section - Actions */}
-        <div className="flex items-center gap-4">
-
-          {/* User Profile with Logout */}
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-        className={`flex items-center gap-3 px-4 py-2 rounded-button transition-all duration-300 ${
-          isAdmin 
-            ? 'bg-warm-brown/10 border border-warm-brown/20' 
-            : 'bg-warm-brown/10 border border-warm-brown/20'
-        }`}
-          >
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-              isAdmin 
-                ? 'bg-warm-brown' 
-                : 'bg-warm-brown'
-            }`}>
-              <User className="w-4 h-4 text-white" />
-            </div>
-            <div className="flex flex-col">
-              <span className={`text-sm font-medium ${
-                isAdmin ? 'text-dark-primary' : 'text-dark-primary'
-              }`}>
-                {isAdmin ? 'Admin' : userName}
-              </span>
-              <span className={`text-xs ${
-                isAdmin ? 'text-medium-gray' : 'text-medium-gray'
-              }`}>
-                {isAdmin ? 'Administrator' : 'Graduate Student'}
-              </span>
-            </div>
-            
-            {/* Logout Button */}
+        {/* Right Section - College Events (students) + Small Logout Button */}
+        <div className="flex items-center gap-3">
+          {!isAdmin && (
             <motion.button
               whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleLogout}
-              className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                isAdmin 
-                  ? 'bg-error/10 hover:bg-error/20 text-error' 
-                  : 'bg-error/10 hover:bg-error/20 text-error'
-              }`}
-              title="Logout"
+              whileTap={{ scale: 0.97 }}
+              onClick={() => navigate('/college-events')}
+              className="px-4 py-1.5 rounded-full bg-warm-brown text-white text-sm font-medium shadow-soft hover:shadow-hover transition-all"
             >
-              <LogOut className="w-4 h-4" />
+              College Events
             </motion.button>
-          </motion.div>
+          )}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={handleLogout}
+            className={`flex items-center justify-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-300 ${
+              isAdmin
+                ? 'bg-error/10 hover:bg-error/20 text-error'
+                : 'bg-error/10 hover:bg-error/20 text-error'
+            }`}
+            title="Logout"
+          >
+            <LogOut className="w-4 h-4" />
+          </motion.button>
         </div>
       </div>
     </motion.div>

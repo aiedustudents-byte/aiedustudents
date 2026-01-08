@@ -97,7 +97,7 @@ export default function ManageCourses() {
               <p className="text-text-secondary text-lg mb-4">Add and manage learning courses for students</p>
               <div className="flex items-center gap-6 text-sm text-text-secondary">
                 <div className="flex items-center gap-2">
-                  <BookOpen className="w-4 h-4 text-admin-accent" />
+                  <BookOpen className="w-4 h-4 text-warm-brown" />
                   <span>{courses.length} Courses Available</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -140,7 +140,7 @@ export default function ManageCourses() {
                   required
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20"
+                  className="w-full px-4 py-3 bg-light-accent/20 border border-light-accent rounded-button text-text-primary focus:outline-none focus:border-warm-brown focus:ring-2 focus:ring-warm-brown/20"
                   placeholder="e.g., Introduction to Machine Learning"
                 />
               </div>
@@ -150,7 +150,7 @@ export default function ManageCourses() {
                   required
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20"
+                  className="w-full px-4 py-3 bg-light-accent/20 border border-light-accent rounded-button text-text-primary focus:outline-none focus:border-warm-brown focus:ring-2 focus:ring-warm-brown/20"
                   rows={3}
                   placeholder="Brief description of the course..."
                 />
@@ -160,9 +160,9 @@ export default function ManageCourses() {
                 <textarea
                   value={formData.advertisement}
                   onChange={(e) => setFormData({ ...formData, advertisement: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20"
+                  className="w-full px-4 py-3 bg-light-accent/20 border border-light-accent rounded-button text-text-primary focus:outline-none focus:border-warm-brown focus:ring-2 focus:ring-warm-brown/20"
                   rows={4}
-                  placeholder="💬 Want to master this course? Join AI EDU Academy today!&#10;📞 Contact us: +91 98765 43210&#10;✉️ Email: support@aieduacademy.com&#10;🌐 Visit: [www.aieduacademy.com](http://www.aieduacademy.com)"
+                  placeholder="💬 Want to master this course? Join the Academy today!&#10;📞 Contact us: +91 98765 43210&#10;✉️ Email: support@academy.com&#10;🌐 Visit: [www.academy.com](http://www.academy.com)"
                 />
                 <p className="text-xs text-text-secondary mt-1">Supports HTML/Markdown formatting for rich text, emojis, and links</p>
               </div>
@@ -173,7 +173,7 @@ export default function ManageCourses() {
                   required
                   value={formData.duration}
                   onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-button text-text-primary focus:outline-none focus:border-admin-accent focus:ring-2 focus:ring-admin-accent/20"
+                  className="w-full px-4 py-3 bg-light-accent/20 border border-light-accent rounded-button text-text-primary focus:outline-none focus:border-warm-brown focus:ring-2 focus:ring-warm-brown/20"
                   placeholder="e.g., 8 weeks"
                 />
               </div>
@@ -212,7 +212,7 @@ export default function ManageCourses() {
             <Card>
               <div className="flex items-start justify-between mb-4">
                 <div className="w-14 h-14 bg-warm-brown/20 rounded-xl flex items-center justify-center">
-                  <BookOpen className="w-7 h-7 text-admin-accent" />
+                  <BookOpen className="w-7 h-7 text-warm-brown" />
                 </div>
                 <div className="flex gap-2">
                   <motion.button

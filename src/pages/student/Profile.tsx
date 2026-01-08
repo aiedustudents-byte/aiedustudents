@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { User, Target, TrendingUp, Save } from 'lucide-react';
 import Card from '../../components/Card';
 import { db } from '../../lib/firebase';
-import { collection, getDocs, addDoc, updateDoc, doc, query, where } from 'firebase/firestore';
+import { collection, getDocs, addDoc, updateDoc, doc } from 'firebase/firestore';
 import { useUser } from '../../contexts/UserContext';
 
 export default function Profile() {
@@ -13,7 +13,10 @@ export default function Profile() {
   const [progress, setProgress] = useState(0);
   const [completedCourses, setCompletedCourses] = useState(0);
   const [isEditing, setIsEditing] = useState(false);
-  const { updateUserName } = useUser();
+  const { user, updateUserName } = useUser();
+
+  const userEmail = user?.email || 'student@example.com';
+  const userUid = user?.uid;
 
   useEffect(() => {
     fetchProfile();
@@ -21,15 +24,17 @@ export default function Profile() {
   }, []);
 
   async function fetchProfile() {
+    if (!userUid && !userEmail) return;
+
     try {
       const profileSnapshot = await getDocs(collection(db, 'user_profiles'));
       const profileData = profileSnapshot.docs
-        .map(doc => ({ id: doc.id, ...doc.data() }))
-        .find((profile: any) => profile.email === email);
+        .map(doc => ({ id: doc.id, ...doc.data() } as any))
+        .find((profile: any) => profile.uid === userUid || profile.email === userEmail);
 
       if (profileData) {
-        setName(profileData.name);
-        setLearningGoal(profileData.learning_goal);
+        setName(profileData.name || '');
+        setLearningGoal(profileData.learning_goal || '');
       } else {
         setName('Graduate Student');
         setLearningGoal('Master AI and Machine Learning');
@@ -43,12 +48,12 @@ export default function Profile() {
     try {
       const coursesSnapshot = await getDocs(collection(db, 'courses'));
       const progressSnapshot = await getDocs(collection(db, 'user_progress'));
-      
+
       const total = coursesSnapshot.size;
       const completed = progressSnapshot.docs
         .map(doc => ({ id: doc.id, ...doc.data() }))
-        .filter((progress: any) => progress.user_email === email && progress.completed).length;
-      
+        .filter((progress: any) => (progress.user_email === userEmail || progress.userId === userUid) && progress.completed).length;
+
       setCompletedCourses(completed);
       setProgress(total > 0 ? Math.round((completed / total) * 100) : 0);
     } catch (error) {
@@ -57,11 +62,13 @@ export default function Profile() {
   }
 
   async function saveProfile() {
+    if (!userUid) return;
+
     try {
       const profileSnapshot = await getDocs(collection(db, 'user_profiles'));
       const existingProfile = profileSnapshot.docs
         .map(doc => ({ id: doc.id, ...doc.data() }))
-        .find((profile: any) => profile.email === email);
+        .find((profile: any) => profile.uid === userUid || profile.email === userEmail);
 
       if (existingProfile) {
         await updateDoc(doc(db, 'user_profiles', existingProfile.id), {
@@ -144,7 +151,7 @@ export default function Profile() {
                   ) : (
                     <h2 className="text-2xl font-bold text-text-primary mb-1">{name}</h2>
                   )}
-                  <p className="text-text-secondary">{email}</p>
+                  <p className="text-text-secondary">{userEmail}</p>
                 </div>
               </div>
               {isEditing ? (

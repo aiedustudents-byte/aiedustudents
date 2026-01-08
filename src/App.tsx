@@ -1,15 +1,18 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Navbar from './components/Navbar';
 import { UserProvider, useUser } from './contexts/UserContext';
 
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import ForgotPassword from './pages/ForgotPassword';
 import Home from './pages/student/Home';
 import PromptEngineering from './pages/student/PromptEngineering';
+import PromptEngineeringGuide from './pages/student/PromptEngineeringGuide';
 import PromptSimulator from './pages/student/PromptSimulator';
 import VibeCoding from './pages/student/VibeCoding';
 import Courses from './pages/student/Courses';
+import CollegeEvents from './pages/student/CollegeEvents';
 import AITools from './pages/student/AITools';
 import CareerBooster from './pages/student/CareerBooster';
 import AIDigest from './pages/student/AIDigest';
@@ -21,6 +24,7 @@ import WellnessCorner from './pages/student/WellnessCorner';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import ManageCourses from './pages/admin/ManageCourses';
 import ManagePromptEngineering from './pages/admin/ManagePromptEngineering';
+import ManageDomainGuide from './pages/admin/ManageDomainGuide';
 import ManageVibeCoding from './pages/admin/ManageVibeCoding';
 import PostNews from './pages/admin/PostNews';
 import ProjectsManager from './pages/admin/ProjectsManager';
@@ -33,10 +37,11 @@ import ManageWellness from './pages/admin/ManageWellness';
 
 function AppContent() {
   const location = useLocation();
-  const { loading } = useUser();
+  const { loading, user, isAdmin: userIsAdmin } = useUser();
   const isAdmin = location.pathname.startsWith('/admin');
   const isLogin = location.pathname === '/login';
   const isSignup = location.pathname === '/signup';
+  const isForgotPassword = location.pathname === '/forgot-password';
   const isSimulator = location.pathname === '/prompt-simulator';
 
   // Show loading state while auth is initializing
@@ -51,12 +56,23 @@ function AppContent() {
     );
   }
 
-  // Show login/signup pages without sidebar and navbar
-  if (isLogin || isSignup) {
+  // Redirect authenticated users away from login/signup/forgot-password pages
+  if ((isLogin || isSignup || isForgotPassword) && user) {
+    return <Navigate to={userIsAdmin ? '/admin' : '/'} replace />;
+  }
+
+  // Redirect unauthenticated users to login page for protected routes
+  if (!user && !isLogin && !isSignup && !isForgotPassword && !isSimulator) {
+    return <Navigate to="/login" replace />;
+  }
+
+  // Show login/signup/forgot-password pages without sidebar and navbar
+  if (isLogin || isSignup || isForgotPassword) {
     return (
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     );
   }
@@ -71,7 +87,7 @@ function AppContent() {
   }
 
   return (
-    <div className={`min-h-screen ${isAdmin ? 'bg-admin-bg' : 'bg-primary-bg'}`}>
+    <div className="min-h-screen bg-primary-bg">
       <Sidebar isAdmin={isAdmin} />
       <Navbar isAdmin={isAdmin} />
 
@@ -79,6 +95,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/prompt-engineering" element={<PromptEngineering />} />
+          <Route path="/prompt-engineering-guide" element={<PromptEngineeringGuide />} />
           <Route path="/vibe-coding" element={<VibeCoding />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/ai-tools" element={<AITools />} />
@@ -88,10 +105,12 @@ function AppContent() {
           <Route path="/wellness" element={<WellnessCorner />} />
           <Route path="/ai-artist-corner" element={<AIArtistCorner />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/college-events" element={<CollegeEvents />} />
 
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/courses" element={<ManageCourses />} />
           <Route path="/admin/prompt-engineering" element={<ManagePromptEngineering />} />
+          <Route path="/admin/prompt-engineering-guide/:domain" element={<ManageDomainGuide />} />
           <Route path="/admin/vibe-coding" element={<ManageVibeCoding />} />
           <Route path="/admin/news" element={<PostNews />} />
           <Route path="/admin/projects" element={<ProjectsManager />} />

@@ -38,8 +38,8 @@ export default function AdminDashboard() {
   }
 
   const statCards = [
-    { icon: BookOpen, label: 'Total Courses', value: stats.courses, color: 'text-admin-accent', bg: 'bg-admin-accent/10' },
-    { icon: Newspaper, label: 'News Articles', value: stats.news, color: 'text-primary-accent', bg: 'bg-primary-accent/10' },
+    { icon: BookOpen, label: 'Total Courses', value: stats.courses, color: 'text-warm-brown', bg: 'bg-warm-brown/10' },
+    { icon: Newspaper, label: 'News Articles', value: stats.news, color: 'text-warm-brown', bg: 'bg-warm-brown/10' },
     { icon: Briefcase, label: 'Job Postings', value: stats.jobs, color: 'text-warning', bg: 'bg-warning/10' },
   ];
 
@@ -54,11 +54,11 @@ export default function AdminDashboard() {
         <Card variant="premium" className="overflow-hidden">
           <div className="flex items-center justify-between">
             <div className="flex-1">
-              <h1 className="text-4xl font-bold text-warm-brown mb-3">Admin Dashboard</h1>
-              <p className="text-text-secondary text-lg mb-4">Manage your AI EDU APP content and analytics</p>
+              <h1 className="text-4xl font-bold mb-3" style={{ color: '#0c1e7f' }}>Admin Dashboard</h1>
+              <p className="text-text-secondary text-lg mb-4">Manage your app content and analytics</p>
               <div className="flex items-center gap-6 text-sm text-text-secondary">
                 <div className="flex items-center gap-2">
-                  <BarChart3 className="w-4 h-4 text-admin-accent" />
+                  <BarChart3 className="w-4 h-4 text-warm-brown" />
                   <span>Platform Analytics</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -138,8 +138,8 @@ export default function AdminDashboard() {
         <h3 className="text-xl font-semibold text-text-primary mb-4">Quick Actions</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
-            { icon: BookOpen, label: 'Add New Course', description: 'Create educational content', color: 'bg-admin-accent/10 text-admin-accent' },
-            { icon: Newspaper, label: 'Post AI News', description: 'Share latest developments', color: 'bg-primary-accent/10 text-primary-accent' },
+            { icon: BookOpen, label: 'Add New Course', description: 'Create educational content', color: 'bg-warm-brown/10 text-warm-brown' },
+            { icon: Newspaper, label: 'Post AI News', description: 'Share latest developments', color: 'bg-warm-brown/10 text-warm-brown' },
             { icon: Users, label: 'View Students', description: 'Monitor progress', color: 'bg-success/10 text-success' },
           ].map((action, index) => (
             <motion.div
