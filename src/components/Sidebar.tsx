@@ -1,4 +1,4 @@
-import { Home, BookOpen, Brain, Newspaper, MessageCircle, User, LayoutDashboard, Users, ArrowLeft, ArrowRight, Zap, Code, Target, Sparkles, FileText } from 'lucide-react';
+import { Home, BookOpen, Brain, Newspaper, MessageCircle, User, LayoutDashboard, Users, ArrowLeft, ArrowRight, Zap, Code, Target, Sparkles, FileText, Layers } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useUser } from '../contexts/UserContext';
@@ -24,10 +24,7 @@ const studentMenuItems = [
 const adminMenuItems = [
   { icon: LayoutDashboard, label: 'Dashboard Overview', path: '/admin' },
   { icon: BookOpen, label: 'Manage Courses', path: '/admin/courses' },
-  { icon: Zap, label: 'Manage Prompt Engineering', path: '/admin/prompt-engineering' },
-  { icon: FileText, label: 'Guide - B.Com', path: '/admin/prompt-engineering-guide/B.Com' },
-  { icon: FileText, label: 'Guide - BBA', path: '/admin/prompt-engineering-guide/BBA' },
-  { icon: FileText, label: 'Guide - Civil', path: '/admin/prompt-engineering-guide/Civil Engineer' },
+  { icon: Layers, label: 'Manage Streams', path: '/admin/streams' },
   { icon: Target, label: 'Simulator Tasks', path: '/admin/simulator-tasks' },
   { icon: Code, label: 'Manage Vibe Coding', path: '/admin/vibe-coding' },
   { icon: Newspaper, label: 'Post AI News', path: '/admin/news' },
@@ -78,7 +75,7 @@ export default function Sidebar({ isAdmin = false }: SidebarProps) {
             DAY
           </span>
         </motion.div>
-        {collegeName && (
+        {collegeName && user?.email !== 'aiedustudents@gmail.com' && (
           <motion.p
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}

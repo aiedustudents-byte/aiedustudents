@@ -26,19 +26,22 @@ export default function Login() {
     setIsEmailLoading(true);
 
     try {
-      // Basic validation
-      if (!email || !password || !collegeId) {
-        setError('Please fill in all fields including College ID');
-        setIsEmailLoading(false);
-        return;
-      }
+      // 1. Verify College ID via API (Skip for special admin email)
+      const isAdminEmail = email === 'aiedustudents@gmail.com';
+      let collegeVerification = { valid: true, collegeId: 'ADMIN', collegeName: '' };
 
-      // 1. Verify College ID via API
-      const collegeVerification = await verifyCollegeId(collegeId);
-      if (!collegeVerification.valid) {
-        setError(collegeVerification.message || 'Invalid or inactive college code');
-        setIsEmailLoading(false);
-        return;
+      if (!isAdminEmail) {
+        if (!collegeId) {
+          setError('Please fill in all fields including College ID');
+          setIsEmailLoading(false);
+          return;
+        }
+        collegeVerification = await verifyCollegeId(collegeId);
+        if (!collegeVerification.valid) {
+          setError(collegeVerification.message || 'Invalid or inactive college code');
+          setIsEmailLoading(false);
+          return;
+        }
       }
 
       // Simple email validation
@@ -320,21 +323,23 @@ export default function Login() {
                 </div>
               </div>
 
-              {/* College ID Input */}
-              <div className="group">
-                <div className="relative flex items-center">
-                  <Briefcase className="w-5 h-5 text-gray-400 absolute left-0" />
-                  <input
-                    type="text"
-                    value={collegeId}
-                    onChange={(e) => setCollegeId(e.target.value)}
-                    placeholder="College ID"
-                    className="w-full py-3 pl-8 pr-4 bg-transparent border-b border-gray-300 focus:border-gray-800 outline-none transition-colors placeholder-gray-300 text-gray-700"
-                    required
-                    disabled={isEmailLoading || isGoogleLoading}
-                  />
+              {/* College ID Input - Hidden for special admin email */}
+              {email !== 'aiedustudents@gmail.com' && (
+                <div className="group">
+                  <div className="relative flex items-center">
+                    <Briefcase className="w-5 h-5 text-gray-400 absolute left-0" />
+                    <input
+                      type="text"
+                      value={collegeId}
+                      onChange={(e) => setCollegeId(e.target.value)}
+                      placeholder="College ID"
+                      className="w-full py-3 pl-8 pr-4 bg-transparent border-b border-gray-300 focus:border-gray-800 outline-none transition-colors placeholder-gray-300 text-gray-700"
+                      required
+                      disabled={isEmailLoading || isGoogleLoading}
+                    />
+                  </div>
                 </div>
-              </div>
+              )}
 
               <div className="flex items-center justify-between">
                 <label className="flex items-center gap-3 cursor-pointer group">

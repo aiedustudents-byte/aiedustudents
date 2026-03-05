@@ -34,6 +34,7 @@ import ManageAITools from './pages/admin/ManageAITools';
 import ManageSimulatorTasks from './pages/admin/ManageSimulatorTasks';
 import ManageAIArtistCorner from './pages/admin/ManageAIArtistCorner';
 import ManageWellness from './pages/admin/ManageWellness';
+import ManageStreamFeatures from './pages/admin/ManageStreamFeatures';
 
 function AppContent() {
   const location = useLocation();
@@ -120,6 +121,7 @@ function AppContent() {
           <Route path="/admin/simulator-tasks" element={<ManageSimulatorTasks />} />
           <Route path="/admin/ai-artist-corner" element={<ManageAIArtistCorner />} />
           <Route path="/admin/wellness" element={<ManageWellness />} />
+          <Route path="/admin/streams" element={<ManageStreamFeatures />} />
         </Routes>
       </main>
     </div>
